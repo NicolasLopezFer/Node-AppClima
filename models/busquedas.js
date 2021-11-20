@@ -93,6 +93,8 @@ class Busquedas {
             return;
         }
 
+        this.historial = this.historial.splice( 0,5 );
+
         this.historial.unshift( lugar.toLocaleLowerCase() );
 
         //Grabar en DB
@@ -104,8 +106,6 @@ class Busquedas {
         const payload = {
             historial: this.historial,
         };
-
-        this.historial = this.historial.splice( 0,5 );
         
         fs.writeFileSync(this.dbPath, JSON.stringify( payload ));
 
